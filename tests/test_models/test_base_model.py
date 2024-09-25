@@ -8,21 +8,20 @@ import json
 import os
 
 
-class TestBasemodel(unittest.TestCase):
-    """ Test base model"""
+class test_basemodel(unittest.TestCase):
+    """ """
 
     def __init__(self, *args, **kwargs):
-        """ Initialize test class """
+        """ """
         super().__init__(*args, **kwargs)
         self.name = 'BaseModel'
         self.value = BaseModel
 
     def setUp(self):
-        """ Set up any state needed for the test """
+        """ """
         pass
 
     def tearDown(self):
-        """clean up after test case has run"""
         try:
             os.remove('file.json')
         except:
