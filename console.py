@@ -155,7 +155,7 @@ class HBNBCommand(cmd.Cmd):
 
         for param in args[1:]:
             if "=" not in param:
-                continue 
+                continue
             key, value = param.split("=", 1)
             if value.startswith('"') and value.endswith('"'):
                 value = value[1:-1]
@@ -369,4 +369,6 @@ class HBNBCommand(cmd.Cmd):
         print("Usage: update <className> <id> <attName> <attVal>\n")
 
 if __name__ == "__main__":
+
+    
     HBNBCommand().cmdloop()
