@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="0fc5e9c0-cebc-466f-b8b8-969233a30b4b" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/file.json" beforeDir="false" afterPath="$PROJECT_DIR$/file.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -29,7 +30,7 @@
     "Python.console.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "C:/Users/user/Desktop/ALU-intranet projecta/alu-AirBnB_clone_v2",
+    "last_opened_file_path": "C:/Users/user/Desktop/ALU-intranet projecta/alu-interview",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -79,7 +80,8 @@
       <updated>1727276008504</updated>
       <workItem from="1727276009517" duration="4722000" />
       <workItem from="1727285054668" duration="4633000" />
-      <workItem from="1727421177873" duration="13826000" />
+      <workItem from="1727421177873" duration="14570000" />
+      <workItem from="1727474080630" duration="1277000" />
     </task>
     <servers />
   </component>
