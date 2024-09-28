@@ -17,7 +17,7 @@ class BaseModel:
     # initialize database columns
     id = Column(String(60), nullable=False, primary_key=True)
     created_at = Column(DateTime, nullable=False, default=datetime.utcnow())
-    updated_at = Column(DateTime, nullable=False, default=created_at)
+    updated_at = Column(DateTime, nullable=False, default=datetime.utcnow())
 
     def __init__(self, *args, **kwargs):
         """Instantiation of base model class
@@ -29,21 +29,33 @@ class BaseModel:
             created_at: creation date
             updated_at: updated date
         """
-        if kwargs:
+        if not kwargs:
             if 'id' not in kwargs:
+                from models import storage
                 self.id = str(uuid.uuid4())
-
-            for key, value in kwargs.items():
-                if key == "created_at" or key == "updated_at":
-                    value = datetime.strptime(value, "%Y-%m-%dT%H:%M:%S.%f")
-                if key != "__class__":
-                    setattr(self, key, value)
-
-            if 'created_at' not in kwargs:
-                self.created_at = self.updated_at = datetime.now()
+                self.id = str(uuid.uuid4())
+                self.created_at = datetime.now()
+                self.updated_at = datetime.now()
+                storage.new(self)
         else:
-            self.id = str(uuid.uuid4())
-            self.created_at = self.updated_at = datetime.now()
+            if 'id' not in kwargs:
+                from models import storage
+                self.id = str(uuid.uuid4())
+                self.created_at = datetime.now()
+                self.updated_at = datetime.now()
+                storage.new(self)
+
+                self.__dict__.update(kwargs)
+            else:
+                kwargs['updated_at'] = datetime.strptime(kwargs['updated_at'],
+                                                         '%Y-%m-%dT%H:%M:%S.%f')
+                kwargs['created_at'] = datetime.strptime(kwargs['created_at'],
+                                                         '%Y-%m-%dT%H:%M:%S.%f')
+                del kwargs['__class__']
+                self.__dict__.update(kwargs)
+
+            # self.id = str(uuid.uuid4())
+            # self.created_at = self.updated_at = datetime.now()
 
     def __str__(self):
         """returns a string
