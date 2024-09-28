@@ -10,6 +10,8 @@ import os
 
 class TestBaseModel(unittest.TestCase):
     """ Test base model"""
+class TestBaseModel(unittest.TestCase):
+    """ Test base model"""
 
     def __init__(self, *args, **kwargs):
         """ """
