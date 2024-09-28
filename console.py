@@ -113,32 +113,66 @@ class HBNBCommand(cmd.Cmd):
         """ Overrides the emptyline method of CMD """
         pass
 
+    # def do_create(self, args):
+    #     """ Create an object of any class"""
+    #     split_args = args.split(' ')
+    #     if not args:
+    #         print("** class name missing **")
+    #         return
+    #     elif split_args[0] not in HBNBCommand.classes:
+    #         print("** class doesn't exist **")
+    #         return
+    #         # Handle args parameters
+    #     new_dict = {}
+    #     if len(split_args) > 1:
+    #         for arg in split_args[1:]:
+    #             key, value = arg.split('=')
+    #             if value[0] == '"':
+    #                 value = value.strip('"').replace('_', ' ')
+    #             else:
+    #                 try:
+    #                     value = eval(value)
+    #                 except NameError or SyntaxError:
+    #                     continue
+    #             new_dict[key] = value
+    #     new_instance = HBNBCommand.classes[split_args[0]](**new_dict)
+    #     storage.new(new_instance)
+    #     print(new_instance.id)
+    #     storage.save()
     def do_create(self, args):
-        """ Create an object of any class"""
-        split_args = args.split(' ')
+        """Create an instance of any class with given parameters"""
+        args = args.split()
         if not args:
             print("** class name missing **")
             return
-        elif split_args[0] not in HBNBCommand.classes:
+
+        class_name = args[0]
+        if class_name not in self.classes:
             print("** class doesn't exist **")
             return
-            # Handle args parameters
-        new_dict = {}
-        if len(split_args) > 1:
-            for arg in split_args[1:]:
-                key, value = arg.split('=')
-                if value[0] == '"':
-                    value = value.strip('"').replace('_', ' ')
-                else:
-                    try:
-                        value = eval(value)
-                    except NameError or SyntaxError:
-                        continue
-                new_dict[key] = value
-        new_instance = HBNBCommand.classes[split_args[0]](**new_dict)
-        storage.new(new_instance)
+
+        new_instance = self.classes[class_name]()
+
+        for param in args[1:]:
+            if "=" not in param:
+                continue 
+            key, value = param.split("=", 1)
+            if value.startswith('"') and value.endswith('"'):
+                value = value[1:-1]
+                value = value.replace("\\\"", "\"")
+                value = value.replace("_", " ")
+            else:
+                try:
+                    if "." in value:
+                        value = float(value)
+                    else:
+                        value = int(value)
+                except ValueError:
+                    continue
+            if hasattr(new_instance, key):
+                setattr(new_instance, key, value)
+        new_instance.save()
         print(new_instance.id)
-        storage.save()
 
     def help_create(self):
         """ Help information for the create method """
