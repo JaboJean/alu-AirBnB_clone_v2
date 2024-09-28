@@ -23,7 +23,6 @@ class FileStorage:
             return temp
         return FileStorage.__objects
 
-
     def new(self, obj):
         """sets __object to given obj
         Args:
@@ -53,10 +52,10 @@ class FileStorage:
         from models.review import Review
 
         classes = {
-                    'BaseModel': BaseModel, 'User': User, 'Place': Place,
-                    'State': State, 'City': City, 'Amenity': Amenity,
-                    'Review': Review
-                   }
+            'BaseModel': BaseModel, 'User': User, 'Place': Place,
+            'State': State, 'City': City, 'Amenity': Amenity,
+            'Review': Review
+        }
         try:
             temp = {}
             with open(FileStorage.__file_path, 'r') as f:
@@ -77,5 +76,3 @@ class FileStorage:
         """ calls reload()
         """
         self.reload()
-
-
